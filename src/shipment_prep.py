@@ -48,3 +48,8 @@ def clean_parcels(df: pd.DataFrame, medians: dict | None = None):
         df[c] = df[c].fillna(medians[c])
 
     return df, medians
+# usage
+raw = pd.read_csv("data/parcels_raw.csv")
+clean, medians = clean_parcels(raw)           # training: computes medians
+# later, for new parcels (Part E scoring script):
+new_clean, _ = clean_parcels(new_raw, medians)  # reuses training medians
